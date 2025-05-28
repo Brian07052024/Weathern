@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/output.css" />
+    <title>Vite App</title>
+  </head>
+
+  <body id="body" class="bg-gray-600 flex justify-center bg-linear-to-b text-white">
+    <div class="flex flex-col gap-4 px-3 py-4 max-w-md">
+      
+      <!-- ===========================
+           HEADER
+      ============================ -->
+      <header class="flex flex-col gap-4">
+        
+        <!-- Top bar with location and menu -->
+        <section class="flex items-center relative">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-list" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+            </svg>
+          </div>
+
+          <div class="flex items-center w-full justify-center">
+            <p class="text-xl font-bold">Monterrey, Nuevo León</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+              <path
+                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+            </svg>
+          </div>
+        </section>
+
+        <!-- Sensación térmica -->
+        <section>
+          <p id="real">Thermal sensation: loading...</p>
+        </section>
+
+      </header>
+
+      <!-- ===========================
+           MAIN CONTENT
+      ============================ -->
+      <main class="grid gap-2.5 grid-cols-2">
+
+        <!-- Temperatura actual principal -->
+        <section class="rounded-2xl flex gap-2 flex-col items-center justify-center col-span-2 h-40 fondo-tra fondo-transparente relative">
+          <p id="celcius" class="text-5xl font-bold">loading...</p>
+          <span id="weather-desc" class="text-xs">loading...</span>
+          <img class="w-16 absolute top-4 left-4" src="./assets/SVG/moon.svg" alt="">
+
+          <span class="absolute top-6 left-16 flex size-3">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-500 opacity-75"></span>
+            <span class="relative inline-flex size-3 rounded-full bg-yellow-200"></span>
+          </span>
+          
+        </section>
+
+        <!-- Temperaturas mínimas/máximas + pronóstico horario -->
+        <section class="rounded-2xl fondo-transparente col-span-2">
+          <div class="mx-2 my-2">
+            <div class="flex flex-col gap-4">
+
+              <div class="flex justify-evenly">
+                <p id="min">Minimum: loading...</p>
+                <p id="max">Maximum: loading...</p>
+              </div>
+
+              <ul>
+                <li class="gap-4 flex overflow-x-auto">
+                  
+                  <div class="flex flex-col items-center">
+                    <p>12:00pm</p>
+                    <img class="w-8" src="./assets/SVG/sunny.svg" alt="">
+                    <p>25°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>1:00pm</p>
+                    <img class="w-8" src="./assets/SVG/sunny.svg" alt="">
+                    <p>26°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>2:00pm</p>
+                    <img class="w-8" src="./assets/SVG/sunny.svg" alt="">
+                    <p>28°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>3:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>30°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>4:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>32°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>5:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>33°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>6:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>34°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>7:00pm</p>
+                    <img class="w-8" src="./assets/SVG/sunset.svg" alt="">
+                    <p>32°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>8:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>30°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>9:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>28°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>10:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>26°C</p>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <p>11:00pm</p>
+                    <img class="w-8" src="./assets/SVG/rain.svg" alt="">
+                    <p>28°C</p>
+                  </div>
+ 
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Humedad -->
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1">
+          <div class="mx-4 my-2 text-center">
+            <img class="w-10" src="./assets/SVG/drop.svg" alt="">
+            <p class="font-bold">0%</p>
+          </div>
+        </section>
+
+        <!-- Viento -->
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1">
+          <div class="mx-4 my-2 text-center">
+            <img class="w-10" src="./assets/SVG/wind.svg" alt="">
+            <p class="font-bold">0%</p>
+          </div>
+        </section>
+
+        <!-- Pronóstico semanal -->
+        <section class="rounded-2xl fondo-transparente col-span-2 flex flex-col gap-2">
+
+          <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Lunes</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>22°C</p>
+              <p>16°C</p>
+            </div>
+          </div>
+
+          <!-- Repetir estructura para los demás días -->
+          <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Martes</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>24°C</p>
+              <p>18°C</p>
+            </div>
+          </div>
+
+           <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Miércoles</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>26°C</p>
+              <p>20°C</p>
+            </div>
+          </div>
+
+          <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Jueves</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>23°C</p>
+              <p>17°C</p>
+            </div>
+          </div>
+
+          <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Viernes</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>25°C</p>
+              <p>19°C</p>
+            </div>
+          </div>
+
+          <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Sábado</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>28°C</p>
+              <p>21°C</p>
+            </div>
+          </div>
+
+          <div class="flex justify-between mx-4 my-2">
+            <p class="w-24">Domingo</p>
+            <div class="flex gap-4">
+              <img src="./assets/SVG/sunny.svg" alt="">
+              <img src="./assets/SVG/moon.svg" alt="">
+            </div>
+            <div class="flex gap-4">
+              <p>27°C</p>
+              <p>22°C</p>
+            </div>
+
+        </section>
+
+      </main>
+    </div>
+
+    <!-- ===========================
+         SCRIPT
+    ============================ -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
