@@ -15,6 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //Cambiar fondo dependiendo de la hora/clima
     const ahora = new Date();
     const hora = ahora.getHours();
+    const hola = "hola";
 
     //calls
     cambiarFondoSegunHora(hora);
