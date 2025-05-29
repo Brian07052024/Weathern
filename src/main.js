@@ -1,15 +1,28 @@
 window.addEventListener("DOMContentLoaded", () => {
 
-    //variables globales
+    //section 1
     const celcius = document.querySelector("#celcius");
     const real = document.querySelector("#real");
+
+    //section 2
     const minima = document.querySelector("#min");
     const maxima = document.querySelector("#max");
+
+    //section 3
     const humedad = document.querySelector("#humedad");
+    //section 4
     const aire = document.querySelector("#aire");
+    //section 5
     const sea = document.querySelector("#sea");
+    //section 6
     const ground = document.querySelector("#ground");
+    //section 7
     const weatherDesc = document.querySelector("#weather-desc");
+    //section 8
+    const amanecer = document.querySelector("#amanecer");
+    //section 9
+    const atardecer = document.querySelector("#atardecer");
+
     const body = document.querySelector("#body");
     const weatherIcon = document.querySelector("#weather-icon");
 
@@ -30,13 +43,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const daily = document.querySelector("#horario-diario");
 
     const semana = [
-        {dia: "Lunes", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Martes", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Miercoles", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Jueves", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Viernes", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Sabado", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Domingo", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"}
+        {dia: "Monday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
+        {dia: "Tuesday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
+        {dia: "Wednesday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
+        {dia: "Thursday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
+        {dia: "Friday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
+        {dia: "Saturday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
+        {dia: "Sunday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"}
     ];
 
     const diario = [
@@ -105,11 +118,12 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
         body.classList.add(
-            "text-white", "flex", "justify-center", "bg-linear-to-b", "h-full",
+            "text-white", "flex", "justify-center", "bg-linear-to-b", "bg-no-repeat",  "bg-cover", "bg-fixed", "h-full",
             ...clases[periodo]
         );
 
         weatherIcon.src = iconos[periodo];
+        weatherIcon.alt = `Main weather icon for ${periodo}`;
     }
 
 
@@ -125,10 +139,12 @@ window.addEventListener("DOMContentLoaded", () => {
             divIconos.classList.add("flex", "gap-4")
 
             const leftImage = document.createElement("IMG");
-            leftImage.src = iconoDia
+            leftImage.src = iconoDia;
+            leftImage.alt = `Day icon for ${dia}`;
 
             const rightImage = document.createElement("IMG");
-            rightImage.src = iconoNoche
+            rightImage.src = iconoNoche;
+            rightImage.alt = `Night icon for ${dia}`;
 
             divIconos.appendChild(leftImage);
             divIconos.appendChild(rightImage);
@@ -160,6 +176,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             const imagenDiario = document.createElement("IMG");
             imagenDiario.src = diarioImagen;
+            imagenDiario.alt = `Weather icon at ${diarioHora}`;
 
             const diarioContenedor = document.createElement("DIV");
 
@@ -183,12 +200,12 @@ window.addEventListener("DOMContentLoaded", () => {
         .then(resultado => {
 
             leerDatos(resultado);
-            // console.log(resultado);
+            console.log(resultado);
         })
     }
 
     function leerDatos(resultado){
-        const {main, wind} = resultado;
+        const {main, wind, sys} = resultado;
         const [{description}] = resultado.weather;
         
         const temperatura = Math.round(main.temp - 273.15);
@@ -196,6 +213,15 @@ window.addEventListener("DOMContentLoaded", () => {
         const tempMin = Math.round(main.temp_min - 273.15);
         const tempMax = Math.round(main.temp_max - 273.15);
         const apiDesc = description;
+
+        const amanecerHora = new Date(sys.sunrise * 1000)
+        console.log(amanecerHora.getHours());
+        console.log(amanecerHora.getMinutes());
+
+        const atardecerHora = new Date(sys.sunset * 1000)
+        console.log(atardecerHora.getHours());
+        console.log(atardecerHora.getMinutes());
+        
 
         real.textContent = `Thermal sensation: ${sensacionReal}°C`;
         celcius.textContent = `${temperatura}°C`;
@@ -208,6 +234,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
         sea.textContent = `${main.sea_level} hPa`;
         ground.textContent = `${main.grnd_level} m s. n. m.`;
+
+        amanecer.textContent = `${amanecerHora.getHours()}:${amanecerHora.getMinutes()}am`
+        atardecer.textContent = `${atardecerHora.getHours()}:${atardecerHora.getMinutes()}pm`
+
+
 
         weatherDesc.textContent = apiDesc;
 
