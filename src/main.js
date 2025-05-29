@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
     //section 1
     const celcius = document.querySelector("#celcius");
     const real = document.querySelector("#real");
+    const videoHome = document.querySelector("#video-home");
 
     //section 2
     const minima = document.querySelector("#min");
@@ -117,6 +118,13 @@ window.addEventListener("DOMContentLoaded", () => {
             Noche: esLluvia ? "./assets/SVG/rain.svg" : "./assets/SVG/moon.svg",
         };
 
+        const videos = {
+            Dia: clima => clima === "rain" ? "./assets/videos/rain.mp4" : "./assets/videos/sun.mp4",
+            Tarde: clima => clima === "rain" ? "./assets/videos/rain.mp4" : "./assets/videos/sun.mp4",
+            Noche: clima => clima === "rain" ? "./assets/videos/rain.mp4" : "./assets/videos/wind.mp4"
+        };
+
+
         body.classList.add(
             "text-white", "flex", "justify-center", "bg-linear-to-b", "bg-no-repeat",  "bg-cover", "bg-fixed", "h-full",
             ...clases[periodo]
@@ -124,6 +132,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
         weatherIcon.src = iconos[periodo];
         weatherIcon.alt = `Main weather icon for ${periodo}`;
+
+        videoHome.src = videos[periodo](clima);
+        videoHome.load(); // Reinicia el video correctamente
+
     }
 
 
