@@ -12,10 +12,10 @@
     /* fuentes */
     --font-sans: "Funnel Sans", system-ui, sans-serif;
 
-    --color-diaUno: #4ED7F1;
-    --color-diaDos: #6FE6FC;
-    --color-diaTres: #A8F1FF;
-    --color-diaCuatro: #FFFA8D;
+    --color-diaUno: #5409DA;
+    --color-diaDos: #4E71FF;
+    --color-diaTres: #8DD8FF;
+    --color-diaCuatro: #BBFBFF;
 
     --color-lluviaDiaUno: #333446;   
     --color-lluviaDiaDos: #7F8CAA;
@@ -42,17 +42,32 @@
     --color-lluviaNocheTres: #5C7372;  
     --color-lluviaNocheCuatro: #AAB2B4;
 
+    --color-resaltadoDia: #1A1B2B;
+    --color-resaltadoTarde: #1A1B2B;
+    --color-resaltadoNoche: #1A1B2B;
   
 }
 
 .fondo-transparente{
-    @apply bg-black/10 shadow-md;
+    @apply bg-black/15 shadow-md;
 }
 
-img{
-    filter: invert(360);
+.scroll-custom::-webkit-scrollbar {
+  height: 4px; /* Altura para scroll horizontal */
 }
 
-span{
-    color: rgb(162, 128, 255);
+.scroll-custom::-webkit-scrollbar-track {
+  background: transparent; /* Color del fondo de la pista */
 }
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25); /* negro con 30% de opacidad */
+  border-radius: 14px;
+}
+
+
+.scroll-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25); /* negro con 30% de opacidad */
+  border-radius: 14px;
+}
+
