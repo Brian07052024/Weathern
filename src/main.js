@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
         body.classList.add(
-            "text-white", "flex", "justify-center", "bg-linear-to-b", "bg-no-repeat",  "bg-cover", "bg-fixed", "h-full",
+            "text-white", "flex", "justify-center", "bg-linear-to-b", "bg-no-repeat",  "bg-cover", "h-full",
             ...clases[periodo]
         );
 
@@ -134,7 +134,12 @@ window.addEventListener("DOMContentLoaded", () => {
         weatherIcon.alt = `Main weather icon for ${periodo}`;
 
         videoHome.src = videos[periodo](clima);
+        videoHome.muted = true;
+        videoHome.playsInline = true;  // nota la camelCase
+        videoHome.autoplay = true;
+        videoHome.loop = true;
         videoHome.load(); // Reinicia el video correctamente
+        
 
     }
 
@@ -212,7 +217,7 @@ window.addEventListener("DOMContentLoaded", () => {
         .then(resultado => {
 
             leerDatos(resultado);
-            console.log(resultado);
+            // console.log(resultado);
         })
     }
 
@@ -227,12 +232,10 @@ window.addEventListener("DOMContentLoaded", () => {
         const apiDesc = description;
 
         const amanecerHora = new Date(sys.sunrise * 1000)
-        console.log(amanecerHora.getHours());
-        console.log(amanecerHora.getMinutes());
+        
 
         const atardecerHora = new Date(sys.sunset * 1000)
-        console.log(atardecerHora.getHours());
-        console.log(atardecerHora.getMinutes());
+        
         
 
         real.textContent = `Thermal sensation: ${sensacionReal}°C`;
