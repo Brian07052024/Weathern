@@ -205,20 +205,19 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function consultarAPI(){
+    async function consultarAPI(){
 
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${estado},${pais}&appid=${key}`;
 
-        fetch(url)
-        .then(respuesta => {
-
-            return respuesta.json()
-        })
-        .then(resultado => {
-
+        try{
+            const respuesta = await fetch(url);
+            const resultado = await respuesta.json();
             leerDatos(resultado);
-            // console.log(resultado);
-        })
+        }catch(error){
+            console.log(error);
+            
+        }
+        
     }
 
     function leerDatos(resultado){
@@ -250,8 +249,11 @@ window.addEventListener("DOMContentLoaded", () => {
         sea.textContent = `${main.sea_level} hPa`;
         ground.textContent = `${main.grnd_level} m s. n. m.`;
 
-        amanecer.textContent = `${amanecerHora.getHours()}:${amanecerHora.getMinutes()}am`
-        atardecer.textContent = `${atardecerHora.getHours()}:${atardecerHora.getMinutes()}pm`
+        const formatTime = date => `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+
+        amanecer.textContent = formatTime(amanecerHora) + "am";
+        atardecer.textContent = formatTime(atardecerHora) + "pm";
+
 
 
 
