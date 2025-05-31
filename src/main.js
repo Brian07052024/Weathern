@@ -1,14 +1,10 @@
 window.addEventListener("DOMContentLoaded", () => {
-
     //section 1
     const celcius = document.querySelector("#celcius");
     const real = document.querySelector("#real");
-    const videoHome = document.querySelector("#video-home");
-
     //section 2
     const minima = document.querySelector("#min");
     const maxima = document.querySelector("#max");
-
     //section 3
     const humedad = document.querySelector("#humedad");
     //section 4
@@ -23,23 +19,18 @@ window.addEventListener("DOMContentLoaded", () => {
     const amanecer = document.querySelector("#amanecer");
     //section 9
     const atardecer = document.querySelector("#atardecer");
-
     const body = document.querySelector("#body");
     const weatherIcon = document.querySelector("#weather-icon");
-
     //variables para la api
     const pais = "Mexico"
     const ciudad = "Monterrey"
     const estado = "Nuevo Leon"
     const key = "f3315a9684b443abffca01e37b28d6e0";
-
     //Cambiar fondo dependiendo de la hora/clima
     const ahora = new Date();
     const hora = ahora.getHours();
-
     //iterar dias de la semana
     const week = document.querySelector("#week");
-
     //iterar horario diario
     const daily = document.querySelector("#horario-diario");
 
@@ -54,12 +45,6 @@ window.addEventListener("DOMContentLoaded", () => {
     ];
 
     const diario = [
-        {diarioHora: "00:00", diarioImagen: "./assets/SVG/moon.svg"},
-        {diarioHora: "01:00", diarioImagen: "./assets/SVG/moon.svg"},
-        {diarioHora: "02:00", diarioImagen: "./assets/SVG/moon.svg"},
-        {diarioHora: "03:00", diarioImagen: "./assets/SVG/moon.svg"},
-        {diarioHora: "04:00", diarioImagen: "./assets/SVG/moon.svg"},
-        {diarioHora: "05:00", diarioImagen: "./assets/SVG/moon.svg"},
         {diarioHora: "06:00", diarioImagen: "./assets/SVG/sunrise-fill.svg"},
         {diarioHora: "07:00", diarioImagen: "./assets/SVG/sunrise-fill.svg"},
         {diarioHora: "08:00", diarioImagen: "./assets/SVG/fat_sunny.svg"},
@@ -118,13 +103,6 @@ window.addEventListener("DOMContentLoaded", () => {
             Noche: esLluvia ? "./assets/SVG/rain.svg" : "./assets/SVG/moon.svg",
         };
 
-        const videos = {
-            Dia: clima => clima === "rain" ? "./assets/videos/rain.mp4" : "./assets/videos/sun.mp4",
-            Tarde: clima => clima === "rain" ? "./assets/videos/rain.mp4" : "./assets/videos/sun.mp4",
-            Noche: clima => clima === "rain" ? "./assets/videos/rain.mp4" : "./assets/videos/wind.mp4"
-        };
-
-
         body.classList.add(
             "text-white", "flex", "justify-center", "bg-linear-to-b", "bg-no-repeat",  "bg-cover", "h-full",
             ...clases[periodo]
@@ -132,15 +110,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         weatherIcon.src = iconos[periodo];
         weatherIcon.alt = `Main weather icon for ${periodo}`;
-
-        videoHome.src = videos[periodo](clima);
-        videoHome.muted = true;
-        videoHome.playsInline = true;  // nota la camelCase
-        videoHome.autoplay = true;
-        videoHome.loop = true;
-        videoHome.load(); // Reinicia el video correctamente
         
-
     }
 
 
@@ -232,11 +202,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
         const amanecerHora = new Date(sys.sunrise * 1000)
         
-
         const atardecerHora = new Date(sys.sunset * 1000)
         
-        
-
         real.textContent = `Thermal sensation: ${sensacionReal}°C`;
         celcius.textContent = `${temperatura}°C`;
         
@@ -253,10 +220,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         amanecer.textContent = formatTime(amanecerHora) + "am";
         atardecer.textContent = formatTime(atardecerHora) + "pm";
-
-
-
-
+        
         weatherDesc.textContent = apiDesc;
 
         if(description.includes("rain")){

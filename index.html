@@ -2,11 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Consulta el clima actual en Monterrey, Nuevo León. Visualiza temperatura, sensación térmica, pronóstico semanal, viento, humedad y más.">
     <link rel="stylesheet" href="./assets/output.css" />
     <link rel="icon" type="svg" href="./assets/SVG/fat_sunny.svg">
+
+    <link rel="preload" href="./assets/output.css" as="style">
+    <link rel="preload" href="/src/main.js" as="script">
+
     <title>Weathern</title>
   </head>
 
@@ -40,7 +43,7 @@
 
         <!-- Sensación térmica -->
         <section>
-          <p id="real">Thermal sensation: loading...</p>
+          <p id="real">Thermal sensation: 00°C</p>
         </section>
 
       </header>
@@ -52,8 +55,7 @@
 
         <!-- Temperatura actual principal -->
         <section class="overflow-hidden z-50 rounded-2xl flex gap-2 flex-col items-center justify-center col-span-2 h-40 fondo-tra fondo-transparente relative cursor-pointer hover:scale-105 hover:contrast-150 transition">
-          <video id="video-home" class="absolute -z-10 opacity-25" src=""></video>
-          <p id="celcius" class="z-50 text-5xl font-bold">loading...</p>
+          <p id="celcius" class="z-50 text-5xl font-bold">00°C</p>
           <span id="weather-desc" class="z-50 text-xs">loading...</span>
           <img id="weather-icon" class="w-12 absolute top-4 left-4" src="" alt="Weather icon">
           
@@ -65,8 +67,8 @@
             <div class="flex flex-col gap-2">
 
               <div class="flex justify-evenly line border-b-1">
-                <p id="min">Minimum: loading...</p>
-                <p id="max">Maximum: loading...</p>
+                <p id="min">Minimum: 00°C</p>
+                <p id="max">Maximum: 00°C</p>
               </div>
 
               <ul>
@@ -81,7 +83,7 @@
         <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:contrast-150 hover:scale-105 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/drop.svg" alt="Humedad">
-            <p id="humedad" class="font-bold">loading...</p>
+            <p id="humedad" class="font-bold">00%</p>
           </div>
         </section>
 
@@ -89,7 +91,7 @@
         <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:contrast-150 hover:scale-105 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/wind.svg" alt="Velocidad del viento">
-            <p id="aire" class="font-bold">loading...</p>
+            <p id="aire" class="font-bold">0m/s</p>
           </div>
         </section>
 
@@ -97,7 +99,7 @@
         <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/water.svg" alt="Temperatura del mar">
-            <p id="sea" class="font-bold">loading...</p>
+            <p id="sea" class="font-bold">0000 hPa</p>
           </div>
         </section>
 
@@ -105,19 +107,15 @@
         <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/globe-americas.svg" alt="Temperatura del suelo">
-            <p id="ground" class="font-bold">loading...</p>
+            <p id="ground" class="font-bold">000 m s. n. m.</p>
           </div>
         </section>
-
-
-
-
 
         <!-- Temperatura del mar -->
         <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/sunrise-fill.svg" alt="Temperatura del mar">
-            <p id="amanecer" class="font-bold">loading...</p>
+            <p id="amanecer" class="font-bold">00:00am</p>
           </div>
         </section>
 
@@ -125,10 +123,9 @@
         <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/sunset.svg" alt="Temperatura del suelo">
-            <p id="atardecer" class="font-bold">loading...</p>
+            <p id="atardecer" class="font-bold">00:00pm</p>
           </div>
         </section>
-
 
         <!-- Pronóstico semanal -->
         <section class="rounded-2xl fondo-transparente col-span-2 flex flex-col gap-2 cursor-pointer hover:scale-105 hover:contrast-150 transition">
@@ -137,23 +134,18 @@
 
       </main>
 
-      <footer class="py-10">
+      <footer class="py-10 text-red-950">
         <h1 class="font-bold">Wheatern</h1>
         <p>By: Brian Orlando Ramirez Nuñez</p>
         <p>©2025 all rights reserved</p>
         <p>-For mobile</p>
-        <p>API: <span class="text-orange-200">Openweathermap</span></p>
-        <span class="text-red-100 border-b-1">ATENCIÓN!</span>
-        <p class="text-red-100">La información de la semana no es correcta respecto a la región, esto se debe a que la API no incluye esa información en el JSON.</p>
-        <p class="text-red-100">Sobra decir que es posible plasmarla para que esta aplicación esté "completa"</p>
+        <p>API: <span class="text-orange-900">Openweathermap</span></p>
+        <p class="text-red-950">La información de la semana no es correcta respecto a la región, esto se debe a que la API no incluye esa información en el JSON.</p>
       </footer>
     </div>
-
-    
-
     <!-- ===========================
          SCRIPT
     ============================ -->
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js" defer></script>
   </body>
 </html>
