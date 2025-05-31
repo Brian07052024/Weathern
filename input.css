@@ -12,10 +12,10 @@
     /* fuentes */
     --font-sans: "Funnel Sans", system-ui, sans-serif;
 
-    --color-diaUno: #5409DA;
-    --color-diaDos: #4E71FF;
-    --color-diaTres: #8DD8FF;
-    --color-diaCuatro: #BBFBFF;
+    --color-diaUno: #60B5FF;
+    --color-diaDos: #AFDDFF;
+    --color-diaTres: #FFECDB;
+    --color-diaCuatro: #FF9149;
 
     --color-lluviaDiaUno: #333446;   
     --color-lluviaDiaDos: #7F8CAA;
@@ -49,7 +49,7 @@
 }
 
 .fondo-transparente{
-    @apply bg-black/15 shadow-md;
+    @apply bg-black/10 shadow-md;
 }
 
 .scroll-custom::-webkit-scrollbar {
