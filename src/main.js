@@ -1,5 +1,4 @@
 window.addEventListener("DOMContentLoaded", () => {
-
     //section 1
     const celcius = document.querySelector("#celcius");
     const real = document.querySelector("#real");
@@ -33,6 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const estado = "Nuevo Leon"
     const key = "f3315a9684b443abffca01e37b28d6e0";
 
+
     //Cambiar fondo dependiendo de la hora/clima
     const ahora = new Date();
     const hora = ahora.getHours();
@@ -42,16 +42,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //iterar horario diario
     const daily = document.querySelector("#horario-diario");
-
-    const semana = [
-        {dia: "Monday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Tuesday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Wednesday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Thursday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Friday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Saturday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"},
-        {dia: "Sunday", iconoDia: "./assets/SVG/sunny.svg", iconoNoche: "./assets/SVG/moon.svg", tempDia: "29°C", tempNoche: "24°C"}
-    ];
 
     const diario = [
         {diarioHora: "00:00", diarioImagen: "./assets/SVG/moon.svg"},
@@ -82,7 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //calls
     cambiarFondoSegunHora(hora);
-    iterarSemana(semana, diario)
+    iterarSemana(diario)
     consultarAPI();
 
     function cambiarFondoSegunHora(hora, clima) {
@@ -130,9 +120,6 @@ window.addEventListener("DOMContentLoaded", () => {
             ...clases[periodo]
         );
 
-        weatherIcon.src = iconos[periodo];
-        weatherIcon.alt = `Main weather icon for ${periodo}`;
-
         videoHome.src = videos[periodo](clima);
         videoHome.muted = true;
         videoHome.playsInline = true;  // nota la camelCase
@@ -140,50 +127,9 @@ window.addEventListener("DOMContentLoaded", () => {
         videoHome.loop = true;
         videoHome.load(); // Reinicia el video correctamente
         
-
     }
 
-
-    function iterarSemana(semana, diario){
-        semana.forEach(diaSemana => {
-            const {dia, iconoDia, iconoNoche, tempDia, tempNoche} = diaSemana;
-
-            const parrafo = document.createElement("P");
-            parrafo.classList.add("w-24");
-            parrafo.textContent = dia;
-
-            const divIconos = document.createElement("DIV");
-            divIconos.classList.add("flex", "gap-4")
-
-            const leftImage = document.createElement("IMG");
-            leftImage.src = iconoDia;
-            leftImage.alt = `Day icon for ${dia}`;
-
-            const rightImage = document.createElement("IMG");
-            rightImage.src = iconoNoche;
-            rightImage.alt = `Night icon for ${dia}`;
-
-            divIconos.appendChild(leftImage);
-            divIconos.appendChild(rightImage);
-
-            const divTemperaturas = document.createElement("DIV");
-            divTemperaturas.classList.add("flex", "gap-4")
-            const leftTemp = document.createElement("P");
-            leftTemp.textContent = tempDia
-            const rightTemp = document.createElement("P");
-            rightTemp.textContent = tempNoche
-            divTemperaturas.appendChild(leftTemp);
-            divTemperaturas.appendChild(rightTemp);
-            
-            const divContenedor = document.createElement("DIV");
-            divContenedor.classList.add("flex", "justify-between", "mx-4", "my-2");
-            
-            divContenedor.appendChild(parrafo);
-            divContenedor.appendChild(divIconos);
-            divContenedor.appendChild(divTemperaturas);
-
-            week.appendChild(divContenedor);
-        });
+    function iterarSemana(diario){
 
         diario.forEach(diarioDia => {
             const {diarioHora, diarioImagen} = diarioDia;
@@ -207,36 +153,42 @@ window.addEventListener("DOMContentLoaded", () => {
 
     async function consultarAPI(){
 
+        const lat = 25.6866;
+        const lon = -100.3161;
+
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${estado},${pais}&appid=${key}`;
 
+        const urlHourly = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
+        
         try{
             const respuesta = await fetch(url);
             const resultado = await respuesta.json();
-            leerDatos(resultado);
-        }catch(error){
-            console.log(error);
             
+            const respuestaHourly = await fetch(urlHourly);
+            const resultadoHourly = await respuestaHourly.json();
+
+            leerDatos(resultado, resultadoHourly);
+
+        }catch(error){
+            console.log(error); 
+
         }
         
     }
-
-    function leerDatos(resultado){
+    
+    function leerDatos(resultado, resultadoHourly){
         const {main, wind, sys} = resultado;
-        const [{description}] = resultado.weather;
+        const [{description, icon}] = resultado.weather;
         
         const temperatura = Math.round(main.temp - 273.15);
         const sensacionReal = Math.round(main.feels_like - 273.15);
         const tempMin = Math.round(main.temp_min - 273.15);
         const tempMax = Math.round(main.temp_max - 273.15);
-        const apiDesc = description;
 
         const amanecerHora = new Date(sys.sunrise * 1000)
         
-
         const atardecerHora = new Date(sys.sunset * 1000)
         
-        
-
         real.textContent = `Thermal sensation: ${sensacionReal}°C`;
         celcius.textContent = `${temperatura}°C`;
         
@@ -254,13 +206,73 @@ window.addEventListener("DOMContentLoaded", () => {
         amanecer.textContent = formatTime(amanecerHora) + "am";
         atardecer.textContent = formatTime(atardecerHora) + "pm";
 
+        // console.log(resultado);
+        const icono = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        
+        weatherIcon.src = icono;
+        weatherIcon.alt = `Main weather icon`;
 
-
-
-        weatherDesc.textContent = apiDesc;
+        weatherDesc.textContent = description;
 
         if(description.includes("rain")){
             cambiarFondoSegunHora(hora, "rain");
         }   
-    }
-})
+
+
+        //HOURLY RESULT:
+
+        const {list} = resultadoHourly;
+        
+        const pronosticosDiarios = list.filter(dia => {
+            if(dia.dt_txt.includes("12:00:00")){
+                return true;
+            }
+        })
+        
+        pronosticosDiarios.forEach(lista => {
+            // console.log(lista);
+            
+            const icono = lista.weather[0].icon;
+            const iconoURL = `https://openweathermap.org/img/wn/${icono}@2x.png`;
+
+            const dia = lista.dt_txt;
+            const nuevoDia = new Date(dia).toLocaleDateString('en-EN', { weekday: 'long' });;
+            
+            const tempMinima = Math.round((lista.main.temp_min - 273.15));
+            const tempMaxima = Math.round((lista.main.temp_max - 273.15));
+
+            const parrafo = document.createElement("P");
+            parrafo.classList.add("w-24");
+            parrafo.textContent = nuevoDia;
+
+            const divIconos = document.createElement("DIV");
+        
+            const rightImage = document.createElement("IMG");
+            rightImage.classList.add("w-8")
+            rightImage.src = iconoURL;
+            rightImage.alt = `Night icon for ${dia}`;
+
+            divIconos.appendChild(rightImage);
+
+            const divTemperaturas = document.createElement("DIV");
+            divTemperaturas.classList.add("flex", "gap-4")
+            const leftTemp = document.createElement("P");
+            leftTemp.textContent = `${tempMaxima}°C`;
+            const rightTemp = document.createElement("P");
+            rightTemp.textContent = `${tempMinima}°C`
+            divTemperaturas.appendChild(leftTemp);
+            divTemperaturas.appendChild(rightTemp);
+            
+            const divContenedor = document.createElement("DIV");
+            divContenedor.classList.add("flex", "justify-between", "mx-4", "my-2", "items-center");
+            
+            divContenedor.appendChild(parrafo);
+            divContenedor.appendChild(divIconos);
+            divContenedor.appendChild(divTemperaturas);
+
+            week.appendChild(divContenedor);
+            
+        });
+        
+    };
+});
