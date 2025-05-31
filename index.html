@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="./assets/output.css" />
     <link rel="icon" type="svg" href="./assets/SVG/fat_sunny.svg">
 
-    <!-- <link rel="preload" href="./assets/output.css" as="style">
-    <link rel="preload" href="./src/main.js" as="script">
-    <link rel="preload" href="./assets/funnel.woff2" as="font" type="font/woff2" crossorigin="anonymous"> -->
-
-
     <title>Weathern</title>
   </head>
 
@@ -56,7 +51,7 @@
       <main class="grid gap-4 grid-cols-2">
 
         <!-- Temperatura actual principal -->
-        <section class="overflow-hidden z-50 rounded-2xl flex gap-2 flex-col items-center justify-center col-span-2 h-40 fondo-tra fondo-transparente relative cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="overflow-hidden z-50 rounded-2xl flex gap-2 flex-col items-center justify-center col-span-2 h-40 fondo-tra fondo-transparente relative cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <video id="video-home" class="absolute -z-10 opacity-50" src=""></video>
           <p id="celcius" class="z-50 text-5xl font-bold">loading...</p>
           <span id="weather-desc" class="z-50 text-xs">loading...</span>
@@ -65,7 +60,7 @@
         </section>
 
         <!-- Temperaturas mínimas/máximas + pronóstico horario -->
-        <section class="rounded-2xl fondo-transparente col-span-2 cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="rounded-2xl fondo-transparente col-span-2 cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <div class="mx-2 my-2">
             <div class="flex flex-col gap-2">
 
@@ -83,7 +78,7 @@
         </section>
 
         <!-- Humedad -->
-        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:contrast-150 hover:scale-105 transition">
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:contrast-150 hover:scale-[101%] transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/drop.svg" alt="Humedad">
             <p id="humedad" class="font-bold">loading...</p>
@@ -91,7 +86,7 @@
         </section>
 
         <!-- Viento -->
-        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:contrast-150 hover:scale-105 transition">
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:contrast-150 hover:scale-[101%] transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/wind.svg" alt="Velocidad del viento">
             <p id="aire" class="font-bold">loading...</p>
@@ -99,7 +94,7 @@
         </section>
 
         <!-- Temperatura del mar -->
-        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/water.svg" alt="Temperatura del mar">
             <p id="sea" class="font-bold">loading...</p>
@@ -107,7 +102,7 @@
         </section>
 
         <!-- Temperatura del suelo -->
-        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/globe-americas.svg" alt="Temperatura del suelo">
             <p id="ground" class="font-bold">loading...</p>
@@ -119,7 +114,7 @@
 
 
         <!-- Temperatura del mar -->
-        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/sunrise-fill.svg" alt="Temperatura del mar">
             <p id="amanecer" class="font-bold">loading...</p>
@@ -127,7 +122,7 @@
         </section>
 
         <!-- Temperatura del suelo -->
-        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="flex flex-col gap-2 justify-center items-center rounded-2xl fondo-transparente col-span-1 cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <div class="mx-4 my-2 flex flex-col items-center">
             <img class="w-10" src="./assets/SVG/sunset.svg" alt="Temperatura del suelo">
             <p id="atardecer" class="font-bold">loading...</p>
@@ -136,7 +131,7 @@
 
 
         <!-- Pronóstico semanal -->
-        <section class="rounded-2xl fondo-transparente col-span-2 flex flex-col gap-2 cursor-pointer hover:scale-105 hover:contrast-150 transition">
+        <section class="rounded-2xl fondo-transparente col-span-2 flex flex-col gap-2 cursor-pointer hover:scale-[101%] hover:contrast-150 transition">
           <div id="week" class="flex flex-col"></div>
         </section>
 
