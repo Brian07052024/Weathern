@@ -3,11 +3,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const celcius = document.querySelector("#celcius");
     const real = document.querySelector("#real");
     const videoHome = document.querySelector("#video-home");
-
     //section 2
     const minima = document.querySelector("#min");
     const maxima = document.querySelector("#max");
-
     //section 3
     const humedad = document.querySelector("#humedad");
     //section 4
@@ -22,27 +20,20 @@ window.addEventListener("DOMContentLoaded", () => {
     const amanecer = document.querySelector("#amanecer");
     //section 9
     const atardecer = document.querySelector("#atardecer");
-
     const body = document.querySelector("#body");
     const weatherIcon = document.querySelector("#weather-icon");
-
     //variables para la api
     const pais = "Mexico"
     const ciudad = "Monterrey"
     const estado = "Nuevo Leon"
     const key = "f3315a9684b443abffca01e37b28d6e0";
-
-
     //Cambiar fondo dependiendo de la hora/clima
     const ahora = new Date();
     const hora = ahora.getHours();
-
-    //iterar dias de la semana
     const week = document.querySelector("#week");
-
     //iterar horario diario
     const daily = document.querySelector("#horario-diario");
-
+    //idea//hacer menos codigo que se repita las 24 veces solo variee la hora y ya wey
     const diario = [
         {diarioHora: "00:00", diarioImagen: "./assets/SVG/moon.svg"},
         {diarioHora: "01:00", diarioImagen: "./assets/SVG/moon.svg"},
@@ -69,7 +60,6 @@ window.addEventListener("DOMContentLoaded", () => {
         {diarioHora: "22:00", diarioImagen: "./assets/SVG/moon.svg"},
         {diarioHora: "23:00", diarioImagen: "./assets/SVG/moon.svg"},
     ];
-
     //calls
     cambiarFondoSegunHora(hora);
     iterarSemana(diario)
@@ -100,12 +90,6 @@ window.addEventListener("DOMContentLoaded", () => {
             Noche: esLluvia
                 ? ["from-lluviaNocheUno", "via-lluviaNocheDos", "to-lluviaNocheCuatro"]
                 : ["from-nocheUno", "via-nocheDos", "to-nocheCuatro"],
-        };
-
-        const iconos = {
-            Dia: esLluvia ? "./assets/SVG/rain.svg" : "./assets/SVG/sunny.svg",
-            Tarde: esLluvia ? "./assets/SVG/rain.svg" : "./assets/SVG/sunset.svg",
-            Noche: esLluvia ? "./assets/SVG/rain.svg" : "./assets/SVG/moon.svg",
         };
 
         const videos = {
@@ -149,7 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
             daily.appendChild(diarioContenedor);
         });
-    }
+    };
 
     async function consultarAPI(){
 
@@ -172,9 +156,9 @@ window.addEventListener("DOMContentLoaded", () => {
         }catch(error){
             console.log(error); 
 
-        }
+        };
         
-    }
+    };
     
     function leerDatos(resultado, resultadoHourly){
         const {main, wind, sys} = resultado;
@@ -217,10 +201,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if(description.includes("rain")){
             cambiarFondoSegunHora(hora, "rain");
         }   
-
-
         //HOURLY RESULT:
-
         const {list} = resultadoHourly;
         
         const pronosticosDiarios = list.filter(dia => {
